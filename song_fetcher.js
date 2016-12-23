@@ -17,10 +17,8 @@ let url = 'http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=' + u
 var getSong = (err, success) => {
   fetch(url)
     .then((res) => { 
-      console.log("Got this as res: " + util.inspect(res, false, null))
       return res.json() })
     .then((body) => {
-      console.log("Got this: " + body)
       let title = body.toptracks.track[0].name
       let artist = body.toptracks.track[0].artist.name
       console.log("Got " + title + " by " + artist)
@@ -30,12 +28,6 @@ var getSong = (err, success) => {
       err(error)
     })
 }
-
-/*
-var getSong = (err, success) => {
-  success("Let It Be", "The Beatles")
-}
-*/
 
 module.exports = {
   getSong : getSong
