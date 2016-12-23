@@ -1,4 +1,5 @@
 // TODO use this require('dotenv').config();
+const util = require('util')
 
 let fetch = require('node-fetch')
 const API_KEY = process.env.SONGS_API_KEY
@@ -15,11 +16,13 @@ let url = 'http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=' + u
 
 var getSong = (err, success) => {
   fetch(url)
-    .then((res) => { return res.json() })
-    .then((data) => {
-      console.log("Got this: " + data)
-      let title = data.toptracks.track[0].name
-      let artist = data.toptracks.track[0].artist.name
+    .then((res) => { 
+      console.log("Got this as res: " + util.inspect(res, false, null))
+      return res.json() })
+    .then((body) => {
+      console.log("Got this: " + body)
+      let title = body.toptracks.track[0].name
+      let artist = body.toptracks.track[0].artist.name
       console.log("Got " + title + " by " + artist)
       success(title, artist)
     })

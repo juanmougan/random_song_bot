@@ -1,20 +1,26 @@
+// TODO use this require('dotenv').config();
 let TelegramBot = require('node-telegram-bot-api')
 let songFetcher = require("./song_fetcher");
-const token	= ''									// TODO need a real token
-let bot = new TelegramBot(token, { polling: true });
+
+const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN
+let bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
 
 let errorHandler = (err) => { 
   bot.sendMessage(msg.chat.id, "Currently unavailable")
 }
 
-let songInfo = (song) => {
-  return song.artist + " - " + song.getTitle		// TODO Syncronous here?
-}
+/*
+bot.on('message', function (msg) {
+  console.log("Received: " + msg)
+});
+*/
 
-const pattern = /\/songs (.+)/							// TODO check this
-bot.onText(pattern, function (msg) {
-  songFetcher.getTitle(errorHandler, (song) => {
-    console.log(`Responding /movie to ${msg.chat.id} with : ${songInfo(song)}`); 
-    bot.sendMessage(msg.chat.id, songInfo(song));
+const SONGS_PATTERN = /\/song (.+)/
+bot.onText(SONGS_PATTERN, function (msg) {
+  console.log("Received /song")
+  songFetcher.getSong(errorHandler, (title, artist) => {
+  	let songInfo = artist + " - " + title
+    console.log(`Responding /songs to ${msg.chat.id} with : ${songInfo}`); 
+    bot.sendMessage(msg.chat.id, songInfo);
   });
 });
