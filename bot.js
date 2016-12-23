@@ -14,7 +14,7 @@ const SONGS_PATTERN = /\/song (.+)/
 bot.onText(SONGS_PATTERN, function (msg, match) {
   let userName = match[1] || DEFAULT_USER
   console.log("Received /song and userName: " + userName)
-  songFetcher.getSong(errorHandler, (title, artist) => {
+  songFetcher.getSong(errorHandler, userName, (title, artist) => {
   	let songInfo = artist + " - " + title
     console.log(`Responding /songs to ${msg.chat.id} with : ${songInfo}`) 
     bot.sendMessage(msg.chat.id, songInfo)
