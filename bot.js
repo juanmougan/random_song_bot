@@ -1,4 +1,4 @@
-// TODO use this require('dotenv').config()
+require('dotenv').config()
 let TelegramBot = require('node-telegram-bot-api')
 let songFetcher = require("./song_fetcher")
 

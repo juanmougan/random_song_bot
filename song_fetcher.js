@@ -1,4 +1,3 @@
-// TODO use this require('dotenv').config();
 const util = require('util')
 
 let fetch = require('node-fetch')
