@@ -4,7 +4,7 @@
   "description": "Telegram bot that suggest a random song",
   "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Juan Manuel Mougan",
@@ -14,5 +14,8 @@
     "node-fetch": "^1.6.3",
     "node-telegram-bot-api": "0.25.0",
     "dotenv": "2.0.0"
+  },
+  "engines": {
+    "node": "7.1.0"
   }
 }
