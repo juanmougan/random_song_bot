@@ -4,7 +4,7 @@
   "description": "Telegram bot that suggest a random song",
   "main": "app.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node web.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Juan Manuel Mougan",
