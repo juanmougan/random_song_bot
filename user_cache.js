@@ -1,16 +1,21 @@
 const USER_EXP_TIME = 60 * 60 * 24 * 30		// Roughly one month
-let redis = require('redis');
+let redis = require('redis')
 // create a new redis client and connect to our local redis instance
-let client = redis.createClient();
+let client = redis.createClient()
 
 // if an error occurs, print it to the console
 client.on('error', function (err) {
-  console.log("Error connecting to Redis: " + err);
-});
+  console.log("Error connecting to Redis: " + err)
+})
 
 client.on('connect', function() {
-  console.log('connected');
-});
+  console.log('connected')
+})
+
+// TODO Should I move getSongsThreshold here?
+var getFromRedis = client.get(key, (err, reply) {
+  reply()
+})
 
 // To set with expiration
-// client.setex('some key', USER_EXP_TIME, 'some value');
+// client.setex('some key', USER_EXP_TIME, 'some value')
